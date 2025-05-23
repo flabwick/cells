@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ folder.name }}</h2>
+<ul>
+  {% for sub in folder.folders %}
+  <li><a href="{{ url_for('view_folder', folder_path=sub.path) }}">{{ sub.name }}</a></li>
+  {% endfor %}
+  {% for cell in folder.cells %}
+  <li><a href="{{ url_for('show_cell', cell_path=cell.path) }}">{{ cell.name }}</a></li>
+  {% endfor %}
+</ul>
+<a href="{{ url_for('index') }}">Back to Root</a>
+{% endblock %}

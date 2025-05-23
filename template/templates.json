@@ -1,0 +1,9 @@
+{
+  "school": {
+    "content.md": "{{original_content}}",
+    "visuals.md": "EMPTY",
+    "log.md": "EMPTY",
+    "report.md": "EMPTY",
+    "session.md": "EMPTY"
+  }
+}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>🧩 {{ cell.name }}</h2>
+<ul>
+  {% for prompt in cell.prompts %}
+  <li>
+    <a href="#" class="prompt-link" data-path="{{ cell_path }}" data-pid="{{ loop.index0 }}">      {{ prompt.title }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+<script>
+document.querySelectorAll('.prompt-link').forEach(link => {
+  link.addEventListener('click', function (e) {
+    e.preventDefault();
+    const path = this.dataset.path;
+    const pid = this.dataset.pid;
+
+    fetch(`/api/resolve/${path}/${pid}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) {
+          document.getElementById('error').textContent = data.error;
+          return;
+        }
+        navigator.clipboard.writeText(data.text).then(() => {
+          document.getElementById('output-box').value = data.text;
+          updateCounts(data.text);
+          showToast("Copied");
+
+          if (data.errors && data.errors.length > 0) {
+            document.getElementById('error').innerHTML = data.errors.map(e => `<div>${e}</div>`).join('');
+          } else {
+            document.getElementById('error').textContent = '';
+          }
+        });
+      })
+      .catch(err => {
+        document.getElementById('error').textContent = "Unexpected error: " + err;
+      });
+  });
+});
+</script>
+<a href="{{ url_for('index') }}">Back to Main</a>
+
+<div id="toast" style="display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:8px 16px;border-radius:4px;"></div>
+<div id="error" style="margin-top:20px;color:red;"></div>
+
+<div style="margin-bottom: 8px;">
+  <span id="word-count">Words: 0</span> |
+  <span id="token-count">Tokens: 0</span>
+</div>
+
+<h3>Last Copied Output</h3>
+<textarea id="output-box" readonly style="width: 100%; height: 400px;"></textarea>
+<br>
+
+<script>
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.style.display = 'block';
+  setTimeout(() => toast.style.display = 'none', 2000);
+}
+
+function updateCounts(text) {
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  document.getElementById('word-count').textContent = `Words: ${words}`;
+
+  fetch('/api/tokencount', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ text })
+  })
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('token-count').textContent = `Tokens: ${data.tokens}`;
+  })
+  .catch(() => {
+    document.getElementById('token-count').textContent = `Tokens: ?`;
+  });
+}
+</script>
+{% endblock %}
