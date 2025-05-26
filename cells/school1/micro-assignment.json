@@ -1,0 +1,26 @@
+[
+  {
+    "name": "micro assignment",
+    "links": {
+      "1": "micro2/assignment/assignment",
+      "2": "substitutes/livecontent",
+      "3": "substitutes/livecontentShort",
+      "4": "substitutes/assignment-research",
+      "5": "micro2/assignment/article"
+    },
+    "prompts": [
+      {
+        "title": "revise",
+        "text": "ASSIGNMENT DETAILS: [[1]]\n SOURCE ARTICLE: [[5]] I have just sent you all the details about my assignment. I will now send a paragraph from that assignment and some instructions. Read the paragraph and the instructions and use the assignment details to help your response.\nBased on the approach below, your task is to mark the draft paragraph with highlighted notes (eg. ==highlighted text==) all around it, as if you were a tutor. The goal is to refine the assignment so that:\n\n- The main idea or argument is clear\n- The sentences are arranged in a smooth, logical order with transitions that connect ideas clearly\n- The evidence used offers genuine insight, not just summary\n- Claims are scrutinized and backed by strong, relevant evidence\n- Never use a metaphor, simile, or figure of speech used in print\n- Never use a long word where a short one will do\n- If it is possible to cut a word out, cut it out\n- Never use the passive where you can use the active\n- Never use a foreign phrase, scientific word, or jargon word if a plain English word will do\n- Make every word count: if it doesn’t add value, remove it. HERE IS THE CONTENT YOU NEED TO MARK: [[3]]\n"
+      },
+      {
+        "title": "apply",
+        "text": "SOURCE: [[2]]\nYou are an expert academic researcher. Read the source and apply it to the assignment below.\n\nThe goal is to determine how suitable the article is for the assignment. Give me a percentage rating on how perfect this article is for the assignment. There should be a lot to critique, and I should be able to critique it using all the economic theories in the course.\n\nThe article I sent you has opinions of its own. Your job is to critique those opinions.\n\nASSIGNMENT: [[1]]"
+      },
+      {
+        "title": "continue-writing",
+        "text": "I have just sent you all the details about my assignment. I will now send a paragraph from that assignment and some instructions. Read the paragraph and continue it.\n\nThe idea is to add more insight, ideas, and evidence without repeating or being redundant. Think from different angles and fill in any gaps.\n\nYour task is to write the given section in full four times. Make sure you exceed the word count.\n\n**Draft 1: Analytical and Structured**  \nLogical clarity with a thesis-driven structure. Each point builds upon the last, supported by analysis and defined concepts. Formal, rigorous tone.\n\n**Draft 2: Conceptual and Big-Picture**  \nBroad, theoretical, exploratory. Maps out themes, draws from multiple disciplines. Good for shaping direction.\n\n**Draft 3: Evidence-Focused and Data-Driven**  \nEmpirical, source-heavy. Anchors claims in statistics and real examples. Prioritizes factual integrity and credibility.\n\n**Draft 4: Critical and Counterargument-Driven**  \nExplores weaknesses, limits, and alternative viewpoints. Uses academic critique to deepen the argument and test assumptions.\n\nStrictly academic tone. No flamboyance.\nDO NOT SEARCH THE WEB.\n\nThis is my assignment: [[4]]\nTHIS IS THE SECTION YOU NEED TO WRITE: [[3]]"
+      }
+    ]
+  }
+]
